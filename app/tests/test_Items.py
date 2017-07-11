@@ -19,14 +19,4 @@ class TestUserClass(TestCase):
         self.assertIsInstance(
             self.new_item, Items, msg='The object should be an instance of the Lists class')
 
-    def test_if_class_has_add_item_method(self):
-        getattr(Items, 'add_item', 'None')
-
-    def test_if_class_has_view_item_method(self):
-        getattr(Items, 'view_item', 'None')
-
-    def test_if_class_has_update_item_method(self):
-        getattr(Items, 'update_item', 'None')
-
-    def test_if_class_has_delete_item_method(self):
-        getattr(Items, 'delete_item', 'None')
+    

@@ -1,9 +1,9 @@
-from items import Items
-from lists import Lists
-from users import User
+from .items import Items
+from .lists import Lists
+from .users import User
 
 
-class BucketlistApp():
+class BucketlistApp(object):
     '''
     The BucketlistApp class is the main implementation class.
     It has 3 functions, create_user, login and logout.
@@ -13,20 +13,34 @@ class BucketlistApp():
     '''
 
     def __init__(self):
-        self.UserCredentials = {}
-        self.Users = []
+        self.usercredentials = {}
+        self.user_names = []
 
-    def create_user(self, username, password):
-        if isinstance(username, str) and username not in self.Users:
-            new_user = User(username)
-            self.Users.append[new_user]
-            self.UserCredentials[username] = password
+    def create_user(self, username, password, confirm_password):
+        if username != None or password != None or confirm_password != None:
+            if username not in self.user_names:
+                if password == confirm_password:
+                    new_user = User(username)
+                    self.user_names.append(username)
+                    self.usercredentials[username] = password
+                    return 'Welcome to the Bucketlist app, please login'
+                else:
+                    return "The password combination was wrong"
+            else:
+                return "Your username already exists"
+        return "Please make sure all the fields are filled in"
 
     def login(self, username, password):
-        if isinstance(username, str) and username in self.Users:
-            if password == self.Users[username]:
-                pass
+        # if username != None or password != None:
+        if username in self.user_names:
+            if password == self.usercredentials[username]:
+                return "Successfully logged in"
+            else:
+                return "Your username and password combination is wrong, please try again"
                 # TODO: Implement open Lists page
+        else:
+            return 'Your username does not exist'
+        # return "Please make sure all the fields are filled in"
 
     def logout(self):
         pass

@@ -1,5 +1,6 @@
-from app.models.lists import Lists
-from app.models.items import Items
+
+from .lists import Lists
+from .items import Items
 
 
 class User(object):
@@ -29,7 +30,9 @@ class User(object):
                 self.user_bucketlists[list_name] = new_bucketlist
                 print(self.user_bucketlists[list_name].list_name)
                 print(self.user_bucketlists[list_name].details)
-                print(self.user_bucketlists[list_name].username)
+
+            return "The list name and details should be a string"
+        return "Please make sure to enter a list name and the list details"
 
     def update_list(self, list_name, details):
 
@@ -38,6 +41,10 @@ class User(object):
                 if key == list_name:
                     self.user_bucketlists[list_name].details = details
             # TODO: Implement the rest of the update functionality
+                else:
+                    return "The list does not exist"
+        else:
+            return "The item and details parameters should be strings"
 
     def view_list(self, list_name):
         if isinstance(list_name, str):
@@ -50,17 +57,63 @@ class User(object):
             for key in self.user_bucketlists:
                 if key == list_name:
                     del self.user_bucketlists[list_name]
+                else:
+                    return "The list does not exist"
+        else:
+            return "The item and details parameters should be strings"
 
-    def add_item(self, listname, item, details, username):
+    def add_item(self, list_name, item, details, check='False'):
         if item != None and details != None:
             if isinstance(item, str) and isinstance(details, str):
                 for key in self.user_bucketlists:
-                    if key == listname:
-                        new_item = Items(item, details, username)
+                    if key == list_name:
+                        item_name = Items(item, details)
+                        self.user_bucketlists[list_name].create_item(
+                            item, item_name)
+                    else:
+                        return "The list does not exist"
+            else:
+                return "The item and details parameters should be strings"
+        else:
+            return "Please make sure you enter values for item and details"
+
+    def update_item(self, list_name, item_name, details):
+        if isinstance(list_name, str):
+            for key in self.user_bucketlists:
+                if key == list_name:
+                    self.user_bucketlists[list_name].update_item(
+                        item_name, details)
+            # TODO: Implement the rest of the update functionality
+                else:
+                    return "The list does not exist"
+        else:
+            return "The item and details parameters should be strings"
+
+    def view_items(self, list_name):
+        if isinstance(list_name, str):
+            for key in self.user_bucketlists:
+                if key == list_name:
+                    self.user_bucketlists[list_name].display_items()
+                else:
+                    return "The list {} does not exist".format(list_name)
+        else:
+            return "The item and details parameters should be strings"
+
+    def delete_item(self, list_name, item):
+        if isinstance(list_name, str):
+            for key in self.user_bucketlists:
+                if key == list_name:
+                    self.user_bucketlists[list_name].delete()
+                else:
+                    return "The list {} does not exist".format(list_name)
+        else:
+            return "The item and details parameters should be strings"
 
 
 new = User('Thegaijin')
 new.create_list("Travel", "East west and all that", 'Thegaijin')
+new.add_item("Travel", "Jinja", "Spend a weekend in Jinja")
+
 '''new.create_list("Fly", " west and all that", 'Thegaijin')
 
 

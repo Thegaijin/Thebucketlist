@@ -1,6 +1,7 @@
 from app import app
-from flask import Flask, flash, redirect, render_template, request, session, abort
 from .forms import RegistrationForm, LoginForm
+from flask import Flask, flash, redirect, render_template, request, session, abort
+
 '''import models'''
 import os
 

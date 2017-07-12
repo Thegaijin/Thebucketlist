@@ -1,5 +1,5 @@
-from lists import Lists
-from items import Items
+from app.models.lists import Lists
+from app.models.items import Items
 
 
 class User(object):
@@ -52,7 +52,7 @@ class User(object):
                     del self.user_bucketlists[list_name]
 
     def add_item(self, listname, item, details, username):
-        if items != None and details != None:
+        if item != None and details != None:
             if isinstance(item, str) and isinstance(details, str):
                 for key in self.user_bucketlists:
                     if key == listname:

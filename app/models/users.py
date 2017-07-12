@@ -1,4 +1,5 @@
 from lists import Lists
+from items import Items
 
 
 class User(object):
@@ -18,7 +19,7 @@ class User(object):
         This method is used to create lists
         :params list_name; Data type > string
         :params details; Data type > string
-        :params user_name; Data type >string
+        :params username; Data type >string
         :params checkbox; Data type > Boolean. This is an optional paramater...
         '''
         '''new_list_name = self.username + '-' + list_name'''
@@ -49,6 +50,13 @@ class User(object):
             for key in self.user_bucketlists:
                 if key == list_name:
                     del self.user_bucketlists[list_name]
+
+    def add_item(self, listname, item, details, username):
+        if items != None and details != None:
+            if isinstance(item, str) and isinstance(details, str):
+                for key in self.user_bucketlists:
+                    if key == listname:
+                        new_item = Items(item, details, username)
 
 
 new = User('Thegaijin')

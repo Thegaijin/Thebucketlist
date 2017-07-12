@@ -1,6 +1,7 @@
 from app import app
 from flask import Flask, flash, redirect, render_template, request, session, abort
 from .forms import RegistrationForm, LoginForm
+'''import models'''
 import os
 
 
@@ -22,7 +23,7 @@ def login():
         return render_template('login.html', form=form)
     elif request.method == 'POST':
         if form.validate_on_submit():
-            # FIXME: Changing from usage, change to check user dictionary
+            # FIXME: Changing from db usage, to check user dictionary
             user = User.query.filter_by(username=form.username.data).first()
             if user:
                 if user.password == form.password.data:

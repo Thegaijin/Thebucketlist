@@ -1,11 +1,21 @@
 {% extends "base.html" %} {% block content %}
 <div class="login-container">
     <div class="form">
+        {% if session['logged_in'] %}
+        <p>You're logged in already!</p>
+        {% else %}
         <form method="POST" action="/login">
-            {{ form.hidden_tag() }} {{ form.email.label }} {{ form.email(size=20) }} {{ form.password.label }} {{ form.password(size=20) }}
+            {{ form.hidden_tag() }} {{ form.username.label }} {{ form.username(size=20) }} {{ form.password.label }} {{ form.password(size=20) }}
             <input type="submit" value="login">
-            <p class="message">Not registered? <a href="signup.html" class="account">Create an account</a></p>
+            <p class="message">Not registered? <a href="/signup" class="account">Create an account</a></p>
         </form>
+        <!--
+        <form action="/login" method="POST">
+            <input type="username" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="Log in">
+        </form>
+        {% endif %}-->
         <!--<form class="register-form">
             <input type="text" placeholder="name" />
             <input type="password" placeholder="password" />

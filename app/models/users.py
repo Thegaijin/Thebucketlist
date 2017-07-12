@@ -1,4 +1,4 @@
-from .lists import Lists
+from lists import Lists
 
 
 class User(object):
@@ -26,7 +26,9 @@ class User(object):
             if isinstance(list_name, str) and isinstance(details, str):
                 new_bucketlist = Lists(list_name, details, username)
                 self.user_bucketlists[list_name] = new_bucketlist
-                print(self.user_bucketlists[list_name])
+                print(self.user_bucketlists[list_name].list_name)
+                print(self.user_bucketlists[list_name].details)
+                print(self.user_bucketlists[list_name].username)
 
     def update_list(self, list_name, details):
 
@@ -42,11 +44,11 @@ class User(object):
                 if key == list_name:
                     return list_name
 
-    def delete_list(self, name_of_list):
-        if isinstance(name_of_list, str):
+    def delete_list(self, list_name):
+        if isinstance(list_name, str):
             for key in self.user_bucketlists:
                 if key == list_name:
-                    del.self.user_bucketlists[listname]
+                    del self.user_bucketlists[list_name]
 
 
 new = User('Thegaijin')

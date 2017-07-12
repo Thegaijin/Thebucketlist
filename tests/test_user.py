@@ -1,4 +1,4 @@
-'''import context'''
+from . import context
 import unittest
 from app.models.users import User
 
@@ -10,7 +10,7 @@ class TestUserClass(unittest.TestCase):
     That the parameter datatypes are the right ones
     '''
 
-    def SetUp(self):
+    def setUp(self):
         try:
             self.new_user = User("Thegaijin")
         except NameError as e:

@@ -2,7 +2,25 @@
 <div class="list-container">
 
     <div class="">
-        <h3>Your lists</h3>
+        <form class='list-search' method='GET' action="/lists">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="search">
+                        <input type='text' name='search' placeholder='Enter list name' class="search-field">
+                        <input type="submit" value="Enter" id="Enter">
+
+                        <span id='search-phrase'>
+
+                            <p>Search for a list</p>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <span id='lists-header'>
+            <h3 >Your lists</h3>
+        </span>
+
         <form class="list-form_ list" action="/lists">
             <div class="container">
 
@@ -10,14 +28,14 @@
                     <div class="col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon">
-                                        	<input type="checkbox">
+                                        	<input type="checkbox" name='checkbox'>
                                         </span>
                             <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
                             <input type="text" id="tbox" name='list_name' placeholder="description" class="form-control">
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="input-group">
                             <span class="input-group-addon">
@@ -49,7 +67,7 @@
                             <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="list-buttons">
                     <ul>

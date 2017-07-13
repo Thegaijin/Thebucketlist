@@ -2,7 +2,7 @@ from app import app
 from app.models.users import User
 from app.models.bucketlistApp import BucketlistApp
 '''from .forms import RegistrationForm, LoginForm'''
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 
 import os
 
@@ -56,25 +56,39 @@ def register():
 
 
 @app.route('/lists', methods=['POST', 'GET'])
-def bucketlists():
+def create_bucketlist():
     if request.method == 'POST':
-        checkbox = request.form.get['checkbox']
+        '''checkbox = request.form.get['checkbox']'''
         list_name = request.form['list_name']
         details = request.form['description']
         button = request.form['add list']
-        # TODO: Figure out how to pick up currently logged in username
-        if checkbox and button:
+
+        if button:
             global username
             new_list = User(username)
-            new_list.create_list(list_name, details)
-            return render_template('lists.html')
+            new_list.create_list(list_name, details, username)
+            return redirect(url_for('create_bucketlist'))
         else:
             flash('Make sure your input is limited to words')
+            return 'Try again'
+    else:
+        return render_template('lists.html')
+
+
+@app.route('/lists', methods=['GET'])
+def view_bucketlists():
+    if request.method == 'GET':
+        listname = request.form('search')
+        get_list = User(username)
+        get_list.view_list(listname)
+        if
+        return render_template('items.html')
+    else:
+        return 'The list name does not exist'
 
 
 @app.route("/logout")
 def logout():
-    pass
+    '''This function logs out the current user'''
     # TODO: implement
-    '''session['logged_in'] = False
-    return home()'''
+    return render_template('login.html')

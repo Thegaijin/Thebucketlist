@@ -15,7 +15,7 @@ class User(object):
         # username holds the username parameter passed to the class
         self.username = username
 
-    def create_list(self, list_name, details, username, checkbox='False'):
+    def create_list(self, list_name, details, username):
         '''
         This method is used to create lists
         :params list_name; Data type > string
@@ -28,8 +28,6 @@ class User(object):
             if isinstance(list_name, str) and isinstance(details, str):
                 new_bucketlist = Lists(list_name, details, username)
                 self.user_bucketlists[list_name] = new_bucketlist
-                print(self.user_bucketlists[list_name].list_name)
-                print(self.user_bucketlists[list_name].details)
 
             return "The list name and details should be a string"
         return "Please make sure to enter a list name and the list details"
@@ -110,9 +108,11 @@ class User(object):
             return "The item and details parameters should be strings"
 
 
-new = User('Thegaijin')
-new.create_list("Travel", "East west and all that", 'Thegaijin')
-new.add_item("Travel", "Jinja", "Spend a weekend in Jinja")
+# FIXME: Testing functionality with some data, delete after
+# new = User('Thegaijin')
+# new.create_list("Travel", "East west and all that", 'Thegaijin')
+'''new.add_item("Travel", "Jinja", "Spend a weekend in Jinja")'''
+# new.add_item("Work", 'My company', "Start my own Data Science company")
 
 '''new.create_list("Fly", " west and all that", 'Thegaijin')
 

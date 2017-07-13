@@ -3,65 +3,79 @@
 
     <div class="">
         <h3>Your lists</h3>
-        <form class="list-form_ list">
+        <form class="list-form_ list" action="/lists">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                        	<input type="checkbox">
-                                        </span>
-                            <input type="text" id="tbox" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                        	<input type="checkbox">
-                                        </span>
-                            <input type="text" id="tbox" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                        	<input type="checkbox">
-                                        </span>
-                            <input type="text" id="tbox" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                        	<input type="checkbox">
-                                        </span>
-                            <input type="text" id="tbox" class="form-control">
-                        </div>
-                    </div>
-                </div>
 
-
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                        	<input type="checkbox">
+                                        </span>
+                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
+                            <input type="text" id="tbox" name='list_name' placeholder="description" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                        	<input type="checkbox">
+                                        </span>
+                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
+                            <input type="text" id="tbox" name='list_name' placeholder="description" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                        	<input type="checkbox">
+                                        </span>
+                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
+                            <input type="text" id="tbox" name='description' placeholder="description" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                        	<input type="checkbox">
+                                        </span>
+                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
+                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
+                        </div>
+                    </div>
+                </div>
 
                 <div class="list-buttons">
                     <ul>
                         <li>
-                            <div class="btn new-list">new list</div>
+                            <span class="new-list">
+                                        <input type="submit" name="add list" value="add list" class="add-list btn">
+                                        </span>
                         </li>
                         <li>
-                            <div class="btn update-list">update list</div>
+                            <span class="new-list">
+                                        <input type="submit" name="view list" value="view list" class="view-list btn">
+                                        </span>
                         </li>
                         <li>
-                            <div class="btn delete-list">delete list</div>
+                            <span class="new-list">
+                                        <input type="submit" name="update list" value="update list" class="update-list btn">
+                                        </span>
+                        </li>
+                        <li>
+                            <span class="new-list">
+                                        <input type="submit" name="delete list" value="delete list" class="delete-list btn">
+                                        </span>
                         </li>
                     </ul>
                 </div>
-                <div class="close-lists">
+                <!--<div class="close-lists">
                     <ul>
                         <li>
                             <div class="btn save-lists">save</div>
@@ -70,7 +84,7 @@
                             <div class="btn cancel">cancel</div>
                         </li>
                     </ul>
-                </div>
+                </div>-->
                 <!--<a href="#" class="lists">back to lists</a>-->
         </form>
         <!--<form class="item-form list">

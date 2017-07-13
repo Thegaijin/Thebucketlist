@@ -26,12 +26,18 @@ blockquote {
 
 body {
     background: #76b852;
+    /*background: url(http://placehold.it/1920x1080) no-repeat center center fixed;*/
+    /*background: url("../images/laser_keyboard.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;*/
 }
 
 .title {
-    padding: 4% 0 0;
+    padding: 2% 0 0;
     text-align: center;
-    font-family: Tally;
+    font-family: Bellefair;
     font-size: 100px;
 }
 
@@ -43,7 +49,7 @@ body {
 
 .btn {
     background-color: #FFF;
-    font-family: 'Amatic SC', cursive;
+    font-family: Bellefair;
     font-size: 20px;
     font-weight: 200;
     padding: 0 15px 5px 15px;
@@ -191,12 +197,18 @@ body {
     float: left;*/
     padding: 5px 0 0 0;
     text-align: center;
-    background: white;
+    /*background: #eee;*/
 }
 
-.new-list {
+.add-list {
     float: left;
     background: green;
+    color: white;
+}
+
+.view-list {
+    float: left;
+    background: blue;
     color: white;
 }
 
@@ -234,5 +246,19 @@ li {
     /*padding-left: 20px;
     padding-right: 20px;*/
     padding-top: 5px;
+    text-align: center;
+}
+
+.jumbotron {
+    color: #76b852 !important;
+    margin: 0, 10% 0 10% !important;
+}
+
+.row {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.display-area h3 {
     text-align: center;
 }

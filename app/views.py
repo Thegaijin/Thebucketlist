@@ -1,43 +1,21 @@
 from app import app
+from app.models.users import User
 from app.models.bucketlistApp import BucketlistApp
-from .forms import RegistrationForm, LoginForm
+'''from .forms import RegistrationForm, LoginForm'''
 from flask import Flask, flash, redirect, render_template, request, session, abort
 
 import os
 
 bucketlistapp = BucketlistApp()
+username = ''
 
 
 @app.route('/')
 @app.route('/index')
 @app.route('/login')
 def index():
-    form = LoginForm()
     if not session.get('logged_in'):
-        return render_template('login.html', form=form)
-
-
-'''@app.route('/')
-@app.route('/index')
-@app.route('/login', methods=['POST'])
-def login():
-    form = LoginForm()
-    if request.method == 'GET':
-        return render_template('login.html', form=form)
-    elif request.method == 'POST':
-        if form.validate_on_submit():
-            # FIXME: Changing from db usage, to check user dictionary
-            user = User.query.filter_by(username=form.username.data).first()
-            if user:
-                if user.password == form.password.data:
-                    login_user(user)
-                    return "User logged in"
-                else:
-                    return "Wrong password"
-            else:
-                return "user doesn't exist"
-    else:
-        return "form not validated"'''
+        return render_template('login.html')
 
 
 @app.route('/')
@@ -45,14 +23,15 @@ def login():
 @app.route('/login', methods=['POST'])
 def login():
     if request.method == 'POST':
+        global username
         username = request.form['username']
         password = request.form['password']
         log_in = bucketlistapp.login(username, password)
         if log_in == "Successfully logged in":
             return render_template('lists.html')
-        elif log_in == 'Your username and password combination does not exist, please try again':
+        elif log_in == "Your username and password combination is wrong, please try again":
             flash(
-                'Your username and password combination does not exist, please try again')
+                "Your username and password combination is wrong, please try again")
             return render_template('login.html')
         elif log_in == 'Your username does not exist':
             return render_template('signup.html')
@@ -76,12 +55,26 @@ def register():
         return render_template('signup.html')
 
 
-@app.route('/lists')
+@app.route('/lists', methods=['POST', 'GET'])
 def bucketlists():
-    pass
+    if request.method == 'POST':
+        checkbox = request.form.get['checkbox']
+        list_name = request.form['list_name']
+        details = request.form['description']
+        button = request.form['add list']
+        # TODO: Figure out how to pick up currently logged in username
+        if checkbox and button:
+            global username
+            new_list = User(username)
+            new_list.create_list(list_name, details)
+            return render_template('lists.html')
+        else:
+            flash('Make sure your input is limited to words')
 
 
 @app.route("/logout")
 def logout():
-    session['logged_in'] = False
-    return home()
+    pass
+    # TODO: implement
+    '''session['logged_in'] = False
+    return home()'''

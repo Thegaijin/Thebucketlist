@@ -14,6 +14,7 @@ class BucketlistApp(object):
 
     def __init__(self):
         self.usercredentials = {}
+        self.users = {}
         self.user_names = []
 
     def create_user(self, username, password, confirm_password):
@@ -23,12 +24,18 @@ class BucketlistApp(object):
                     new_user = User(username)
                     self.user_names.append(username)
                     self.usercredentials[username] = password
+                    self.users[username] = new_user
                     return 'Welcome to the Bucketlist app, please login'
                 else:
                     return "The password combination was wrong"
             else:
                 return "Your username already exists"
         return "Please make sure all the fields are filled in"
+
+    def check_for_user(self, username):
+        if username in self.users:
+            return self.users[username]
+        return 'User not in list'
 
     def login(self, username, password):
         # if username != None or password != None:

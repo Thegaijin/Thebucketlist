@@ -1,6 +1,6 @@
 
-from .lists import Lists
-from .items import Items
+from app.models.lists import Lists
+from app.models.items import Items
 
 
 class User(object):
@@ -15,111 +15,102 @@ class User(object):
         # username holds the username parameter passed to the class
         self.username = username
 
-    def create_list(self, list_name, details, username):
+    def create_list(self, list_name, details):
         '''
         This method is used to create lists
-        :params list_name; Data type > string
-        :params details; Data type > string
-        :params username; Data type >string
-        :params checkbox; Data type > Boolean. This is an optional paramater...
+        :params list_name
+        :params details
+        :params username
         '''
-        '''new_list_name = self.username + '-' + list_name'''
-        if list_name != None and details != None:
-            if isinstance(list_name, str) and isinstance(details, str):
-                new_bucketlist = Lists(list_name, details, username)
-                self.user_bucketlists[list_name] = new_bucketlist
 
-            return "The list name and details should be a string"
-        return "Please make sure to enter a list name and the list details"
+        if list_name is not None and details is not None:
+            new_bucketlist = Lists(list_name, details)
+            for lists in self.user_bucketlists:
+                if list_name != lists:
+                    self.user_bucketlists[list_name] = new_bucketlist
+                return True
+        return "A list by that name already exists"
 
     def update_list(self, list_name, details):
+        '''
+        Updates the properties of a list
+        :param list_name;
+        :param details;
+        '''
+        for key in self.user_bucketlists:
+            if key == list_name:
+                self.user_bucketlists[list_name].details = details
+        # TODO: Implement the rest of the update functionality
+            else:
+                return "The list does not exist"
 
-        if isinstance(list_name, str):
-            for key in self.user_bucketlists:
-                if key == list_name:
-                    self.user_bucketlists[list_name].details = details
-            # TODO: Implement the rest of the update functionality
-                else:
-                    return "The list does not exist"
-        else:
-            return "The item and details parameters should be strings"
-
-    def view_list(self, list_name):
-        if isinstance(list_name, str):
-            for key in self.user_bucketlists:
-                if key == list_name:
-                    return list_name
+    def display_list(self):
+        '''
+        Displays the lists
+        :return
+        '''
+        return self.user_bucketlists
 
     def delete_list(self, list_name):
-        if isinstance(list_name, str):
+        '''
+        Deletes a list
+        :param list_name
+        '''
+
+        for key in self.user_bucketlists:
+            if key == list_name:
+                del self.user_bucketlists[list_name]
+            else:
+                return "The list does not exist"
+
+    def add_item(self, list_name, item, details):
+        '''
+        Adds items to list
+        :param listname
+        :param details
+        '''
+
+        if item is not None and details is not None:
+
             for key in self.user_bucketlists:
                 if key == list_name:
-                    del self.user_bucketlists[list_name]
+                    item_name = Items(item, details)
+                    self.user_bucketlists[list_name].create_item(
+                        item, item_name)
                 else:
                     return "The list does not exist"
-        else:
-            return "The item and details parameters should be strings"
 
-    def add_item(self, list_name, item, details, check='False'):
-        if item != None and details != None:
-            if isinstance(item, str) and isinstance(details, str):
-                for key in self.user_bucketlists:
-                    if key == list_name:
-                        item_name = Items(item, details)
-                        self.user_bucketlists[list_name].create_item(
-                            item, item_name)
-                    else:
-                        return "The list does not exist"
-            else:
-                return "The item and details parameters should be strings"
         else:
             return "Please make sure you enter values for item and details"
 
     def update_item(self, list_name, item_name, details):
-        if isinstance(list_name, str):
-            for key in self.user_bucketlists:
-                if key == list_name:
-                    self.user_bucketlists[list_name].update_item(
-                        item_name, details)
-            # TODO: Implement the rest of the update functionality
-                else:
-                    return "The list does not exist"
-        else:
-            return "The item and details parameters should be strings"
+        '''
+        Updates item properties
+        :param list_name
+        :param item_name
+        :param details
+        '''
+
+        for key in self.user_bucketlists:
+            if key == list_name:
+                self.user_bucketlists[list_name].update_item(
+                    item_name, details)
+        # TODO: Implement the rest of the update functionality
+            else:
+                return "The list does not exist"
 
     def view_items(self, list_name):
-        if isinstance(list_name, str):
-            for key in self.user_bucketlists:
-                if key == list_name:
-                    self.user_bucketlists[list_name].display_items()
-                else:
-                    return "The list {} does not exist".format(list_name)
-        else:
-            return "The item and details parameters should be strings"
+
+        for key in self.user_bucketlists:
+            if key == list_name:
+                self.user_bucketlists[list_name].display_items()
+            else:
+                return "The list {} does not exist".format(list_name)
 
     def delete_item(self, list_name, item):
-        if isinstance(list_name, str):
-            for key in self.user_bucketlists:
-                if key == list_name:
-                    self.user_bucketlists[list_name].delete()
-                else:
-                    return "The list {} does not exist".format(list_name)
-        else:
-            return "The item and details parameters should be strings"
 
-
-# FIXME: Testing functionality with some data, delete after
-# new = User('Thegaijin')
-# new.create_list("Travel", "East west and all that", 'Thegaijin')
-'''new.add_item("Travel", "Jinja", "Spend a weekend in Jinja")'''
-# new.add_item("Work", 'My company', "Start my own Data Science company")
-
-'''new.create_list("Fly", " west and all that", 'Thegaijin')
-
-
-new.create_list("Level", "East west all that", 'Thegaijin')
-new.create_list("Jump", "East west and that", 'Thegaijin')
-new.create_list("Skip", "East west all", 'Thegaijin')
-new.create_list("Read", "all that", 'Thegaijin')
-new.create_list("Scoop", "East", 'Thegaijin')
-new.create_list("Mate", "that", 'Thegaijin')'''
+        for key in self.user_bucketlists:
+            if key == list_name:
+                self.user_bucketlists[list_name].delete()
+            else:
+                return "The list {} does not exist".format(list_name)

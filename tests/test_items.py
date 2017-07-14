@@ -1,4 +1,4 @@
-from app import Items
+from app.models.items import Items
 from unittest import TestCase
 
 

@@ -7,8 +7,10 @@ class Lists(object):
         self.checkbox = checkbox
 
     def create_item(self, item, item_name):
-        self.items[item] = item_name
-        print(self.items)
+
+        if item not in self.items:
+            self.items[item] = item_name
+            return "Item has been added to bucketlist"
 
     def update_details(self, item, details):
         if item in self.items:
@@ -20,4 +22,5 @@ class Lists(object):
         return self.items
 
     def delete(self, item):
-        del self.items[item]
+        if item in self.items:
+            del self.items[item]

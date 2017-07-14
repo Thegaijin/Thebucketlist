@@ -1,148 +1,96 @@
 {% extends "base.html" %}{% block content %}
+<span id="logged_in">
+    <h4>Welcome {{logged_in}}</h4>
+</span>
 <div class="list-container">
 
     <div class="">
-        <form class='list-search' method='GET' action="/lists">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="search">
-                        <input type='text' name='search' placeholder='Enter list name' class="search-field">
-                        <input type="submit" value="Enter" id="Enter">
-
-                        <span id='search-phrase'>
-
-                            <p>Search for a list</p>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </form>
         <span id='lists-header'>
             <h3 >Your lists</h3>
         </span>
+        <div class="list-buttons">
+            <ul>
+                <li>
+                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                        Add list
+                    </button>
 
-        <form class="list-form_ list" action="/lists">
-            <div class="container">
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">Enter your list name</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!--Add form-->
+                                    <form method="POST" action="/lists" class="list-form_ list">
+                                        <div class="container">
+                                            <div class="input-group">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                        	<input type="checkbox" name='checkbox'>
-                                        </span>
-                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
-                            <input type="text" id="tbox" name='list_name' placeholder="description" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                        	<input type="checkbox">
-                                        </span>
-                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
-                            <input type="text" id="tbox" name='list_name' placeholder="description" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                        	<input type="checkbox">
-                                        </span>
-                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
-                            <input type="text" id="tbox" name='description' placeholder="description" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">
-                                        	<input type="checkbox">
-                                        </span>
-                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
-                            <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
-                        </div>
-                    </div>
-                </div>-->
+                                                <input type="text" id="tbox" name='list_name' placeholder="list name" class="form-control">
+                                                <input type="text" id="tbox" name='description' placeholder="description" class="form-control">
+                                            </div>
+                                        </div>
 
-                <div class="list-buttons">
-                    <ul>
-                        <li>
-                            <span class="new-list">
-                                        <input type="submit" name="add list" value="add list" class="add-list btn">
-                                        </span>
-                        </li>
-                        <li>
-                            <span class="new-list">
+                                        <div class="modal-footer">
+                                            <div class="col-md-7 col-md-offset-2">
+                                                <input type="submit" class="btn btn-primary" value="Save list">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <li>
+                        <span class="new-list">
                                         <input type="submit" name="view list" value="view list" class="view-list btn">
                                         </span>
-                        </li>
-                        <li>
-                            <span class="new-list">
+                    </li>
+                    <li>
+                        <span class="new-list">
                                         <input type="submit" name="update list" value="update list" class="update-list btn">
                                         </span>
-                        </li>
-                        <li>
-                            <span class="new-list">
+                    </li>
+                    <li>
+                        <span class="new-list">
                                         <input type="submit" name="delete list" value="delete list" class="delete-list btn">
                                         </span>
-                        </li>
-                    </ul>
-                </div>
-                <!--<div class="close-lists">
-                    <ul>
-                        <li>
-                            <div class="btn save-lists">save</div>
-                        </li>
-                        <li>
-                            <div class="btn cancel">cancel</div>
-                        </li>
-                    </ul>
-                </div>-->
-                <!--<a href="#" class="lists">back to lists</a>-->
-        </form>
-        <!--<form class="item-form list">
-                        <input type="text" placeholder="list name" />
-                        <input type="text" placeholder="list name" />
-                        <input type="text" placeholder="list name" />
-                        <input type="text" placeholder="list name" />
-                        <input type="text" placeholder="list name" />
-                        <div class="list-buttons">
-                            <ul>
-                                <li>
-                                    <div class="btn update-list">add item</div>
-                                </li>
-                                <li>
-                                    <div class="btn new-list">view items</div>
-                                </li>
-                                <li>
-                                    <div class="btn update-list">update item</div>
-                                </li>
-                                <li>
-                                    <div class="btn delete-list">delete item</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="close-lists">
-                            <ul>
-                                <li>
-                                    <div class="btn save-lists">save</div>
-                                </li>
-                                <li>
-                                    <div class="btn cancel">cancel</div>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#" class="lists">back to lists</a>
-                    </form>
--->
+                    </li>
+            </ul>
         </div>
 
+        <!--TABLE-->
+        {% if userbuckets %}
+        <div class="buckets-table">
+            <table class="table table-condensed table-bordered">
+                <tr>
+                    <th>Listname</th>
+                    <th>description</th>
+                    <th>Items</th>
+                </tr>
+                <tbody>
+                    {% for bucket in userbuckets %}
+                    <tr>
+                        <td>{{ bucket}}</td>
+                        <td>{{ userbuckets[bucket].details }}</td>
+                        <td><a href="items.html">view items<a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <span id='empty-lists'>
+                <p class="text-center">You do no have any buckets yet</p>
+            </span>
+        {% endif %}
 
-
+        </div>
     </div>
     {% endblock %}

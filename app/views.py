@@ -114,6 +114,27 @@ def view_bucketlists(list_name):
         return 'The list name does not exist'
 
 
+@app.route('/items', methods=['POST', 'GET'])
+def create_items():
+    '''
+    creates items and displays them on and refreshes
+    the page.
+    '''
+    currentuser = bucketlistapp.check_for_user(session['username'])
+    if not currentuser:
+        redirect(url_for('login'))
+
+    if request.method == 'POST':
+        item_name = request.form['item_name']
+        details = request.form['description']
+        currentuser.create_item(item_name, details)
+        your_bucketlists = currentuser.display_list()
+        print(your_bucketlists)
+        return render_template('lists.html', userbuckets=your_bucketlists)
+    else:
+        return 'did not work'
+
+
 @app.route("/logout")
 def logout():
     '''

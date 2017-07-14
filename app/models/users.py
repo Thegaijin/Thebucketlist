@@ -102,7 +102,9 @@ class User(object):
 
         for key in self.user_bucketlists:
             if key == list_name:
-                self.user_bucketlists[list_name].display_items()
+                items_in_list = self.user_bucketlists[list_name].display_items(
+                )
+                return items_in_list
             else:
                 return "The list {} does not exist".format(list_name)
 

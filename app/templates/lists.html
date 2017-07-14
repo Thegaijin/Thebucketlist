@@ -39,23 +39,11 @@
                                             </div>
                                         </div>
                                     </form>
+                                    <!-- End form -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <span class="new-list">
-                                        <input type="submit" name="view list" value="view list" class="view-list btn">
-                                        </span>
-                </li>-->
-                <li>
-                    <span class="new-list">
-                                        <input type="submit" name="update list" value="update list" class="update-list btn">
-                                        </span>
-                </li>
-                <li>
-                    <span class="new-list">
-                                        <input type="submit" name="delete list" value="delete list" class="delete-list btn">
-                                        </span>
                 </li>
             </ul>
         </div>
@@ -68,18 +56,28 @@
                     <th>Listname</th>
                     <th>description</th>
                     <th>Items</th>
+                    <th>update</th>
+                    <th>Delete</th>
                 </tr>
                 <tbody>
                     {% for bucket in userbuckets %}
                     <tr>
                         <td>{{ bucket }}</td>
                         <td>{{ userbuckets[bucket].details }}</td>
-                        <td><a href="{{url_for(view_bucketlists, id=list_name)}}">view items<a></td>
+                        <td><a href="/items">view items<a></td>
+                        <td><a href="/lists"> update list<a></td>
+                        <td><a href="/lists">delete list<a></td>
+                        
                     </tr>
                     {% endfor %}
                 </tbody>
             </table>
         </div>
+        {% else %}
+        <span id='empty-lists'>
+                <p class="text-center">You do no have any buckets yet</p>
+            </span>
+        {% endif %}
 
         </div>
     </div>

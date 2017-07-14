@@ -97,8 +97,16 @@ def create_bucketlist():
         return 'did not work'
 
 
-@app.route('/lists', methods=['GET'])
-def view_bucketlists(list_name):
+''' @app.route("/items", methods=['POST', 'GET'])
+def add_items():
+    currentuser = bucketlistapp.check_for_user(session['username'])
+    if not currentuser:
+        redirect(url_for('login'))
+    if request.method == 'POST': '''
+
+
+@app.route('/items', methods=['GET'])
+def view_bucket_items():
     '''
     To display the bucketlists
     '''
@@ -108,8 +116,8 @@ def view_bucketlists(list_name):
         redirect(url_for('login'))
 
     if request.method == 'GET':
-        currentuser.view_list(list_name)
-        return render_template('items.html')
+        items_in_list = currentuser.view_items()
+        return render_template('items.html', items_in_list=items_in_list)
     else:
         return 'The list name does not exist'
 

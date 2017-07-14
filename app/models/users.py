@@ -25,11 +25,10 @@ class User(object):
 
         if list_name is not None and details is not None:
             new_bucketlist = Lists(list_name, details)
-            for lists in self.user_bucketlists:
-                if list_name != lists:
-                    self.user_bucketlists[list_name] = new_bucketlist
-                return True
-        return "A list by that name already exists"
+            if list_name in self.user_bucketlists:
+                return "A list by that name already exists"
+            else:
+                self.user_bucketlists[list_name] = new_bucketlist
 
     def update_list(self, list_name, details):
         '''

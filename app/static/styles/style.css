@@ -184,6 +184,7 @@ body {
     float: left;
     background: blue;
     color: white;
+    margin-top: 15px;
 }
 
 .update-list {

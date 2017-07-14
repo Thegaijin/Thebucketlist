@@ -88,9 +88,9 @@ def create_bucketlist():
     if request.method == 'POST':
         list_name = request.form['list_name']
         details = request.form['description']
-        current_user = bucketlistapp.users[currentuser]
-        current_user.create_list(list_name, details)
-        your_bucketlists = current_user.display_list()
+        '''current_user = bucketlistapp.users[currentuser]'''
+        currentuser.create_list(list_name, details)
+        your_bucketlists = currentuser.display_list()
         print(your_bucketlists)
         return render_template('lists.html', userbuckets=your_bucketlists)
     else:
@@ -98,9 +98,9 @@ def create_bucketlist():
 
 
 @app.route('/lists', methods=['GET'])
-def view_bucketlists():
+def view_bucketlists(list_name):
     '''
-    To display to bucketlists
+    To display the bucketlists
     '''
     currentuser = bucketlistapp.check_for_user(session['username'])
 
@@ -108,9 +108,7 @@ def view_bucketlists():
         redirect(url_for('login'))
 
     if request.method == 'GET':
-        listname = request.form('search')
-        current_user = bucketlistapp.users[currentuser]
-        current_user.view_list(listname)
+        currentuser.view_list(list_name)
         return render_template('items.html')
     else:
         return 'The list name does not exist'

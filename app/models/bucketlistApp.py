@@ -35,10 +35,9 @@ class BucketlistApp(object):
     def check_for_user(self, username):
         if username in self.users:
             return self.users[username]
-        return 'User not in list'
+        return None
 
     def login(self, username, password):
-        # if username != None or password != None:
         if username in self.user_names:
             if password == self.usercredentials[username]:
                 return "Successfully logged in"

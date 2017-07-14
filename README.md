@@ -6,7 +6,7 @@ This application allows users to register an account and login to create bucket 
 2. Set your virtual environment with the software listed in the requirements.txt
 3. The Application has been developed and tested on Windows 10.
 
-#To start using this application, first clone it to your local machine by running
+#To start using this application, clone it to your local machine by running
 
 git clone https://github.com/Thegaijin/Thebucketlist.git
 cd bucketlist

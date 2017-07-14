@@ -1,6 +1,6 @@
 
-from app.models.lists import Lists
-from app.models.items import Items
+from .lists import Lists
+from .items import Items
 
 
 class User(object):
